@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FeelTalk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= BACKGROUND MEDIA ================= -->
+<video id="bgVideo" autoplay loop muted>
+    <source src="bg.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+<audio id="bgMusic" src="music.mp3" loop preload="auto" muted></audio>
+
+<!-- ================= LOGIN / SIGNUP ================= -->
+<div class="card" id="authCard">
+    <div class="tabs">
+        <div class="tab active" id="loginTab">Login</div>
+        <div class="tab" id="signupTab">Signup</div>
+    </div>
+
+    <div class="forms">
+        <!-- LOGIN -->
+        <div class="form active" id="loginForm">
+            <input id="loginUser" placeholder="Username" autocomplete="off">
+            <input id="loginPass" type="password" placeholder="Password" autocomplete="off">
+            <button id="loginBtn">Login</button>
+            <div class="msg" id="loginMsg"></div>
+        </div>
+
+        <!-- SIGNUP -->
+        <div class="form" id="signupForm">
+            <input id="signupUser" placeholder="Username" autocomplete="off">
+            <input id="signupPass" type="password" placeholder="Password" autocomplete="off">
+            <input id="signupConfirm" type="password" placeholder="Confirm Password" autocomplete="off">
+            <button id="signupBtn">Signup</button>
+            <div class="msg" id="signupMsg"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= PIN SCREEN ================= -->
+<div class="pinScreen hidden" id="pinScreen">
+    <h3>Security PIN</h3>
+    <input id="pinInput" type="password" maxlength="4" placeholder="****">
+    <button id="createPinBtn">Create PIN</button>
+    <button id="resetPinBtn">Reset PIN</button>
+
+    <!-- Security Questions -->
+    <div id="securityQuestions" class="hidden">
+        <h4>Answer 3 Security Questions</h4>
+        <input id="favPlace" placeholder="Favourite Place">
+        <input id="favFood" placeholder="Favourite Food">
+        <input id="favPerson" placeholder="Favourite Person">
+        <button id="submitSecurityBtn">Submit Answers</button>
+    </div>
+</div>
+
+<!-- ================= LOCKER SCREEN ================= -->
+<div class="lockerScreen hidden" id="lockerScreen">
+    <video id="lockerVideo" preload="auto">
+        <source src="locker.mp4" type="video/mp4">
+    </video>
+    <audio id="lockerSound" src="lockerSound.webm"></audio>
+</div>
+
+<!-- ================= OPEN DIARY ================= -->
+<div class="openDiaryScreen hidden" id="openDiaryScreen" style="background-image:url('dairyBg.jpg'); background-size: cover; background-position: center;">
+    <div class="openDiaryBg">
+        <button id="openDiaryBtn">Open Diary</button>
+        <div class="quote">A way to express your feelings</div>
+    </div>
+</div>
+
+<!-- ================= BOOK ANIMATION ================= -->
+<div class="bookScreen hidden" id="bookScreen">
+    <video id="bookVideo" preload="auto">
+        <source src="book.mp4" type="video/mp4">
+    </video>
+</div>
+
+<!-- ================= DIARY MAIN ================= -->
+<div class="diaryScreen hidden" id="diaryScreen" style="background-image:url('dairyBg.jpg'); background-size: cover; background-position: center;">
+
+    <!-- ===== HEADER ===== -->
+    <div class="headerSection">
+        <div class="walletBox">
+            💰 Wallet: ₹<span id="walletAmount">0.00</span>
+            <button id="addBalanceBtn">Add Balance</button>
+            <button id="stopBgBtn">Stop Background Music</button>
+        </div>
+
+        <div class="headerRight">
+            <select id="languageSelect">
+                <option value="en">English</option>
+                <option value="te">Telugu</option>
+            </select>
+            <button id="accountBtn">Account</button>
+        </div>
+    </div>
+
+    <!-- ===== MIDDLE ===== -->
+    <div class="middleSection">
+
+        <!-- Page Info -->
+        <div class="topRow">
+            <div id="dateText"></div>
+            <div id="dayText"></div>
+            <div class="pageInfo">
+                Page <span id="currentPage">1</span> / <span id="totalPages">100</span>
+            </div>
+        </div>
+
+        <!-- Page Navigation -->
+        <div class="pageNav">
+            <button id="prevPageBtn">⬅</button>
+            <input id="jumpPageInput" type="number" min="1" placeholder="Go to page">
+            <button id="nextPageBtn">➡</button>
+        </div>
+
+        <!-- YouTube / Audio -->
+        <div class="linkRow">
+            <input id="mediaLink" placeholder="Paste YouTube link">
+            <button id="playMediaBtn">Play</button>
+            <button id="pauseMediaBtn">Pause</button>
+        </div>
+
+        <!-- Diary Content -->
+        <textarea id="diaryText" maxlength="200" placeholder="Write your diary (max 200 words)"></textarea>
+
+        <!-- Attachments -->
+        <div class="attachRow">
+            <label>Image 1<input type="file" id="img1" accept="image/*"></label>
+            <label>Image 2<input type="file" id="img2" accept="image/*"></label>
+            <label>Video<input type="file" id="vid1" accept="video/*"></label>
+        </div>
+
+        <button id="saveDiaryBtn">Save Page</button>
+        <div id="savedEntries"></div>
+
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footerSection">
+        <button id="logoutBtn">Logout</button>
+
+        <div class="footerRight">
+            <button id="brightnessBtn">☀ / 🌙</button>
+            <button id="downloadBtn">Download Diary</button>
+            <button id="calendarBtn">Calendar</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= ACCOUNT POPUP ================= -->
+<div class="accountOverlay hidden" id="accountOverlay"></div>
+<div class="accountPopup hidden" id="accountPopup">
+    <div id="profileContainer"></div> <!-- Container to show uploaded profile image -->
+    <input type="file" id="profilePhoto">
+    <input id="accName" placeholder="Name">
+    <input id="accPhone" placeholder="Phone">
+    <select id="accGender">
+        <option>Male</option>
+        <option>Female</option>
+        <option>Others</option>
+    </select>
+    <input id="accFather" placeholder="Father Name">
+    <input id="accMother" placeholder="Mother Name">
+    <input id="accBirth" placeholder="Birth Place">
+    <input id="accLocation" placeholder="Current Location">
+    <input id="accAddress" placeholder="Address">
+    <input id="accLove" placeholder="Loving Person">
+    <button id="saveAccountBtn" class="blueBtn">Save</button>
+    <button id="closeAccountBtn" class="blueBtn">Close</button>
+</div>
+
+<!-- ================= ADD BALANCE POPUP ================= -->
+<div class="accountOverlay hidden" id="paymentOverlay"></div>
+<div class="accountPopup hidden" id="paymentPopup">
+    <h3>Add Balance</h3>
+    <div class="qrBox">
+        <p>Kandimalla Karthik</p>
+        <img src="qr.webp" alt="Demo QR" class="qrImage">
+    </div>
+    <input id="txnIdInput" placeholder="Enter Transaction ID">
+    <input id="addAmountInput" type="number" placeholder="Enter Amount">
+    <button id="confirmAddBtn">Add</button>
+    <button id="closePaymentBtn" class="blueBtn">Close</button>
+</div>
+
+<!-- ================= PAGE LIMIT PAYMENT ================= -->
+<div class="accountOverlay hidden" id="limitOverlay"></div>
+<div class="accountPopup hidden" id="limitPopup">
+    <h3>Unlock Pages</h3>
+    <button data-pages="100" data-price="30">100 Pages – ₹30</button>
+    <button data-pages="200" data-price="50">200 Pages – ₹50</button>
+    <button data-pages="500" data-price="80">500 Pages – ₹80</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

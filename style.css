@@ -1,0 +1,329 @@
+/* ============================= 
+   GLOBAL RESET & BODY
+============================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+}
+
+/* =============================
+   BACKGROUND VIDEO & OVERLAY
+============================= */
+#bgVideo {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.overlay {
+  position: fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.6);
+  z-index: -1;
+}
+
+/* =============================
+   CARD (LOGIN / SIGNUP)
+============================= */
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,50,0.7);
+  padding: 30px;
+  border-radius: 12px;
+  width: 320px;
+}
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.2);
+}
+.tab.active {
+  background: rgba(255,255,255,0.8);
+  color: #000;
+}
+.form {
+  display: none;
+  flex-direction: column;
+}
+.form.active {
+  display: flex;
+}
+input {
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+}
+
+/* =============================
+   BUTTON STYLE (Login/Signup)
+============================= */
+button {
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+/* =============================
+   NEW COLORS
+============================= */
+
+/* Login Button Gradient */
+#loginBtn {
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+}
+#loginBtn:hover {
+  background: linear-gradient(90deg, #ff4b2b, #ff416c);
+  transform: translateY(-2px);
+}
+
+/* Signup Button Gradient */
+#signupBtn {
+  background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+}
+#signupBtn:hover {
+  background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+  transform: translateY(-2px);
+}
+
+/* PIN Creation Button Gradient */
+#createPinBtn, #resetPinBtn {
+  background: linear-gradient(90deg, #43e97b, #38f9d7);
+  color: #000;
+}
+#createPinBtn:hover, #resetPinBtn:hover {
+  background: linear-gradient(90deg, #38f9d7, #43e97b);
+  transform: translateY(-2px);
+}
+
+/* =============================
+   PIN SCREEN
+============================= */
+.pinScreen {
+  position: absolute;
+  inset:0;
+  background: rgba(0,0,30,0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.pinScreen.hidden {
+  display: none;
+}
+.pinScreen input {
+  width: 120px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid #0cf;
+  background: rgba(0,0,50,0.6);
+  color: #fff;
+  margin-bottom: 15px;
+}
+#pinScreen button {
+  width: 140px;
+  padding: 12px;
+  margin: 6px;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* =============================
+   LOCKER SCREEN
+============================= */
+.lockerScreen {
+  position: absolute;
+  inset:0;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  background: rgba(0,0,0,0.9);
+}
+.lockerScreen.hidden {display:none;}
+.lockerScreen video {width:60%; border-radius: 12px;}
+
+/* =============================
+   OPEN DIARY SCREEN
+============================= */
+.openDiaryScreen {
+  position: absolute;
+  inset:0;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  background: url('dairyBg.jpg') no-repeat center center;
+  background-size: cover;
+}
+.openDiaryScreen.hidden {display:none;}
+.openDiaryScreen button {
+  padding: 15px 30px;
+  font-size: 20px;
+  background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+  color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.openDiaryScreen .quote {
+  margin-top: 20px;
+  font-size: 18px;
+  font-style: italic;
+}
+
+/* =============================
+   BOOK SCREEN
+============================= */
+.bookScreen {
+  position: absolute;
+  inset:0;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  background: rgba(0,0,0,0.9);
+}
+.bookScreen.hidden {display:none;}
+.bookScreen video {
+  width: 80%;
+  border-radius: 12px;
+}
+
+/* =============================
+   DIARY SCREEN
+============================= */
+.diaryScreen {
+  position: absolute;
+  inset:0;
+  display: flex;
+  flex-direction: column;
+  background: url('dairyBg.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 10px;
+}
+.diaryScreen.hidden {display:none;}
+.headerSection, .footerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+  background: rgba(0,0,50,0.6);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.middleSection {
+  flex:1;
+  overflow-y:auto;
+  padding: 5px;
+}
+textarea#diaryText {
+  width:100%;
+  height:150px;
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 8px;
+  resize:none;
+}
+
+/* ============================= 
+   DIARY SCREEN BUTTONS BLUE
+============================= */
+#saveDiaryBtn, #prevPageBtn, #nextPageBtn, #openDiaryBtn,
+#addBalanceBtn, #accountBtn, #brightnessBtn, #downloadBtn, #calendarBtn, #stopBgBtn {
+  background: linear-gradient(90deg, #1e90ff, #00bfff);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 10px;
+  transition: 0.3s;
+}
+#saveDiaryBtn:hover, #prevPageBtn:hover, #nextPageBtn:hover, #openDiaryBtn:hover,
+#addBalanceBtn:hover, #accountBtn:hover, #brightnessBtn:hover, #downloadBtn:hover, #calendarBtn:hover, #stopBgBtn:hover {
+  background: linear-gradient(90deg, #00bfff, #1e90ff);
+  transform: translateY(-2px);
+}
+
+/* =============================
+   ACCOUNT / PAYMENT / LIMIT POPUPS
+============================= */
+.accountOverlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  z-index: 20;
+  display:none;
+}
+.accountOverlay.active {display:block;}
+.accountPopup {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background: rgba(0,0,50,0.9);
+  padding:20px;
+  border-radius:12px;
+  z-index:21;
+  display:none;
+}
+.accountPopup.active {display:block;}
+.accountPopup input, .accountPopup select, .accountPopup button {
+  display:block;
+  width:100%;
+  margin:6px 0;
+  padding:6px;
+  border-radius:6px;
+  border:none;
+}
+
+/* =============================
+   WALLET, PAGE INFO
+============================= */
+.walletBox {
+  background: rgba(255,255,255,0.2);
+  padding:4px 8px;
+  border-radius:8px;
+}
+.pageInfo {margin-top:4px; font-size:14px;}
+
+/* =============================
+   SCROLLBAR
+============================= */
+.middleSection::-webkit-scrollbar {
+  width:6px;
+}
+.middleSection::-webkit-scrollbar-thumb {
+  background:#0cf;
+  border-radius:3px;
+}
