@@ -327,3 +327,49 @@ textarea#diaryText {
   background:#0cf;
   border-radius:3px;
 }
+/* =================================================
+   FIX: POPUP BUTTON COLORS (ACCOUNT / PAYMENT / LIMIT)
+   (STRICT PATCH – NO OTHER STYLES TOUCHED)
+================================================= */
+
+/* Account Popup Buttons */
+.accountPopup button,
+#saveAccountBtn,
+#closeAccountBtn {
+  background: linear-gradient(90deg, #1e90ff, #00bfff) !important;
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+.accountPopup button:hover,
+#saveAccountBtn:hover,
+#closeAccountBtn:hover {
+  background: linear-gradient(90deg, #00bfff, #1e90ff) !important;
+}
+
+/* Add Balance (Payment) Popup Buttons */
+#paymentPopup button,
+#confirmAddBtn,
+#closePaymentBtn {
+  background: linear-gradient(90deg, #1e90ff, #00bfff) !important;
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+#paymentPopup button:hover,
+#confirmAddBtn:hover,
+#closePaymentBtn:hover {
+  background: linear-gradient(90deg, #00bfff, #1e90ff) !important;
+}
+
+/* Buy Pages / Limit Popup Buttons */
+#limitPopup button {
+  background: linear-gradient(90deg, #ff9800, #ff5722) !important;
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+#limitPopup button:hover {
+  background: linear-gradient(90deg, #ff5722, #ff9800) !important;
+}
+
